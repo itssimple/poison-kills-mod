@@ -13,15 +13,10 @@ public class ModForge {
 		IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 		modEventBus.addListener(this::loadComplete);
 
-		setGlobalConstants();
 		ModCommon.init();
 	}
 
 	private void loadComplete(final FMLLoadCompleteEvent event) {
 		MinecraftForge.EVENT_BUS.register(new ForgeEventSubscriber());
-	}
-
-	private static void setGlobalConstants() {
-
 	}
 }

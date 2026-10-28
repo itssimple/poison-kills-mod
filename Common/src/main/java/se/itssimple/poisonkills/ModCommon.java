@@ -2,11 +2,5 @@ package se.itssimple.poisonkills;
 
 public class ModCommon {
 
-	public static void init() {
-		load();
-	}
-
-	private static void load() {
-
-	}
+	public static void init() {	}
 }

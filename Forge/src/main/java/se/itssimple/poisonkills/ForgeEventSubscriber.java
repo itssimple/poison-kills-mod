@@ -1,22 +1,24 @@
 package se.itssimple.poisonkills;
 
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.level.Level;
-import net.minecraftforge.event.TickEvent;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import se.itssimple.poisonkills.events.PoisonTickEvent;
 
 @Mod.EventBusSubscriber
 public class ForgeEventSubscriber {
-	@SubscribeEvent
-	public void onWorldTick(TickEvent.LevelTickEvent e) {
-		Level level = e.level;
+    @SubscribeEvent
+    public void applyEventTick(LivingEvent.LivingTickEvent e) {
+        LivingEntity livingEntity = e.getEntity();
 
-		if(level.isClientSide || !e.phase.equals(TickEvent.Phase.START)) return;
-
-		if(level instanceof ServerLevel serverLevel) {
-			PoisonTickEvent.onPoisonTick(serverLevel);
-		}
-	}
+        if (livingEntity.hasEffect(MobEffects.POISON)) {
+            if (livingEntity instanceof ServerPlayer && livingEntity.getHealth() <= 1.0f) {
+                livingEntity.hurt(livingEntity.damageSources().genericKill(), 1.0f);
+            } else if (livingEntity.getHealth() <= 1.0f) {
+                livingEntity.hurt(livingEntity.damageSources().genericKill(), 1.0f);
+            }
+        }
+    }
 }

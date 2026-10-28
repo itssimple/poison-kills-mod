@@ -23,12 +23,12 @@ minecraft {
     runs {
         client {
             workingDirectory project.file('run')
-            arg "-mixin.config=poisonkills.mixins.json" // mixin
+            //arg "-mixin.config=poisonkills.mixins.json" // mixin
 
             ideaModule "${rootProject.name}.${project.name}.main"
             taskName 'Client'
-            property 'mixin.env.remapRefMap', 'true'
-            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+            //property 'mixin.env.remapRefMap', 'true'
+            //property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
             mods {
                 modClientRun {
                     source sourceSets.main
@@ -39,12 +39,12 @@ minecraft {
 
         server {
             workingDirectory project.file('run')
-            arg "-mixin.config=poisonkills.mixins.json" // mixin
+            //arg "-mixin.config=poisonkills.mixins.json" // mixin
 
             ideaModule "${rootProject.name}.${project.name}.main"
             taskName 'Server'
-            property 'mixin.env.remapRefMap', 'true'
-            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+            //property 'mixin.env.remapRefMap', 'true'
+            //property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
             mods {
                 modServerRun {
                     source sourceSets.main
@@ -55,13 +55,13 @@ minecraft {
 
         data {
             workingDirectory project.file('run')
-            arg "-mixin.config=poisonkills.mixins.json" // mixin
+            //arg "-mixin.config=poisonkills.mixins.json" // mixin
 
             ideaModule "${rootProject.name}.${project.name}.main"
             args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
             taskName 'Data'
-            property 'mixin.env.remapRefMap', 'true'
-            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+            //property 'mixin.env.remapRefMap', 'true'
+            //property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
             mods {
                 modDataRun {
                     source sourceSets.main
@@ -81,13 +81,13 @@ dependencies {
     compileOnly project(":Common")
 }
 
-mixin { // mixin
-    add sourceSets.main, "poisonkills.refmap.json" // mixin
-    config 'poisonkills.mixins.json' // mixin
-
-    debug.verbose = true // mixin
-    debug.export = true // mixin
-} // mixin
+//mixin { // mixin
+//    add sourceSets.main, "poisonkills.refmap.json" // mixin
+//    config 'poisonkills.mixins.json' // mixin
+//
+//    debug.verbose = true // mixin
+//    debug.export = true // mixin
+//} // mixin
 
 tasks.withType(JavaCompile) {
     source(project(":Common").sourceSets.main.allSource)
@@ -95,6 +95,8 @@ tasks.withType(JavaCompile) {
 
 processResources {
     from project(":Common").sourceSets.main.resources
+    exclude "poisonkills.mixins.json"
+    exclude "mixin.refmap.json"
 }
 
 jar.finalizedBy('reobfJar')

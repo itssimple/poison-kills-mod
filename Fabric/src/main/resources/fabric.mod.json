@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "poisonkills",
-  "version": "2.0",
+  "version": "2.1",
 
   "name": "Poison Kills",
   "description": "Poison is deadly, if you don't get cured, you won't survive!",

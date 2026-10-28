@@ -13,11 +13,11 @@ forgix {
 
     forge {
         jarLocation = "build/libs/${mod_name}-forge-${minecraft_version}-${version}.jar"
+        mixin null
     }
 }
 
 subprojects {
-    
     apply plugin: 'java'
     
     java.toolchain.languageVersion = JavaLanguageVersion.of(17)
