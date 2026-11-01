@@ -4,9 +4,6 @@ license="${license}"
 issueTrackerURL="${issue_tracker_url}"
 logoFile="icon.png"
 
-[[mixins]]
-config="${mod_id}.mixins.json"
-
 [[mods]]
 modId="${mod_id}"
 version="${version}"
@@ -14,6 +11,7 @@ displayName="${mod_name}"
 displayURL=""
 authors="${mod_author}"
 description='''${description}'''
+mixinConfigs=["${mod_id}.mixins.json"]
 
 [[dependencies.${mod_id}]]
 modId="minecraft"
